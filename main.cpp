@@ -1,26 +1,26 @@
 /*
   15.12.2022
-  Р—Р°РЅСЏС‚РёРµ 11
-  Р Р°Р±РѕС‚Р° 2, РЈРіР°РґР°Р№РєР°
+  Занятие 11
+  Работа 2, Угадайка
   Version 1.1 (16.12.2022)
   CPP-07
   Curios Ye Ye
 */
 
-/* РџР РћР“Р РђРњРњРђ - РЈР“РђР”РђР™ РЎР›РћР’Рћ
+/* ПРОГРАММА - УГАДАЙ СЛОВО
 
-РќР°Р·РЅР°С‡РµРЅРёРµ: 
+Назначение: 
 
-РџСЂРѕРіСЂР°РјРјР° РІС‹РіСЂСѓР¶Р°РµС‚ РІРѕРїСЂРѕСЃС‹ Рё РїРѕРґСЃРєР°Р·РєРё РёР· С„Р°Р№Р»Р°, СѓРєР°Р·С‹РІР°РµРјРѕРіРѕ РёР· РєРѕРЅСЃРѕР»Рё
-РџРѕР»СЊР·РѕРІР°С‚РµР»СЋ РІС‹РґР°СЋС‚СЃСЏ РІС‹РіСЂСѓР¶РµРЅРЅС‹Рµ Р·Р°РґР°С‡Рё РїРѕ РїРѕСЂСЏРґРєСѓ, РІ СЃР»СѓС‡Р°Рµ РЅРµРїСЂР°РІРёР»СЊРЅРѕРіРѕ РѕС‚РІРµС‚Р° РґР°СЋС‚СЃСЏ РїРѕРґСЃРєР°Р·РєРё. РџРѕСЃР»Рµ СѓРіР°РґС‹РІР°РЅРёСЏ РєР°Р¶РґРѕРіРѕ РёР· СЃР»РѕРІ РїСЂРµРґР»Р°РіР°РµС‚СЃСЏ РІС‹Р±РѕСЂ - РІС‹Р№С‚Рё РёР»Рё РїСЂРѕРґРѕР»Р¶РёС‚СЊ.
+Программа выгружает вопросы и подсказки из файла, указываемого из консоли
+Пользователю выдаются выгруженные задачи по порядку, в случае неправильного ответа даются подсказки. После угадывания каждого из слов предлагается выбор - выйти или продолжить.
 
-РџСЂРѕРіСЂР°РјРјР° Р·Р°РІРµСЂС€Р°РµС‚СЃСЏ Р»РёР±Рѕ РїРѕСЃР»Рµ РІС‹Р±РѕСЂР° РІС‹Р№С‚Рё Р»РёР±Рѕ РїРѕСЃР»Рµ РёСЃС‡РµРѕСЂРїР°РЅРёСЏ РІСЃРµС… РІРѕРїСЂРѕСЃРѕРІ.
+Программа завершается либо после выбора выйти либо после исчеорпания всех вопросов.
 
-РћСЃРЅРѕРІРЅС‹Рµ С„СѓРЅРєС†РёРё РѕР±СЉСЏРІР»РµРЅС‹ РІ С„Р°Р№Р»Рµ hints.h 
+Основные функции объявлены в файле hints.h 
 
-РћРіСЂР°РЅРёС‡РµРЅРёСЏ Рё РїСЂРѕР±Р»РµРјС‹:
+Ограничения и проблемы:
 
-1. Р’ С„Р°Р№Р»Рµ СЃ РІРѕРїСЂРѕСЃР°РјРё РЅРµРѕР±С…РѕРґРёРјРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СЃРїРµС†РёР°Р»СЊРЅС‹Рµ С‚СЌРіРё
+1. В файле с вопросами необходимо использовать специальные тэги
 */
 
 #include "hints.h"
@@ -29,30 +29,33 @@
 #include <vector>
 #include <cstdlib>
 #include <fstream>
-#include <unistd.h>
+// #include <unistd.h>
 #include <locale>
 #include <codecvt>
+#include <Windows.h>
 
 int main() 
 {
-
-  // SetConsoleCP(1251);
-  // SetConsoleOutputCP(1251);
+  
+  setlocale(LC_ALL, "Russian");
+  SetConsoleCP(1251);
+  SetConsoleOutputCP(1251);
+  system("chcp 1251");
 
   std::vector<jinx::WordQuest> Questions;  
   std::string fileName;
   int num = 0;
   
-  std::system("clear");
+  std::system("CLS");
   std::cout << "---------------------------------------------------------------\n\n";
-  std::cout << "                  >>> РРіСЂР° РЈРіР°РґР°Р№-РєР°! <<<\n\n";
+  std::cout << "                  >>> Игра Угадай-ка! <<<\n\n";
   std::cout << "---------------------------------------------------------------\n\n";
-  std::cout << "> Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° СЃ РІРѕРїСЂРѕСЃР°РјРё (def: quest.txt)\n: ";
+  std::cout << "> Введите название файла с вопросами (def: quest.txt)\n: ";
   std::cin >> fileName;
   
   num = jinx::get_quests_amount(fileName);
 
-  std::cout << "> РљРѕР»РёС‡РµСЃС‚РІРѕ РѕР±РЅР°СЂСѓР¶РµРЅРЅС‹С… РІРѕРїСЂРѕСЃРѕРІ СЂР°РІРЅРѕ " << num << std::endl;
+  std::cout << "> Количество обнаруженных вопросов равно " << num << std::endl;
 
   for (int i = 1; i <= num; ++i)
     {
@@ -65,7 +68,7 @@ int main()
       Questions.push_back(temp);
     } // END OF for (int i = 1; i <= num; ++i)
 
-  // --------------- Р“Р›РђР’РќР«Р™ Р¦РРљР› РР“Р Р« -----------------------------------
+  // --------------- ГЛАВНЫЙ ЦИКЛ ИГРЫ -----------------------------------
 
   bool gameContinue = true;
   bool gotWordRight = false;
@@ -81,23 +84,23 @@ int main()
   // std::string narrow = converter.to_bytes(wide_utf16_source_string);
   // std::wstring wide = converter.from_bytes(narrow_utf8_source_string);
 
-  // Exit line - РІС‹С…РѕРґ
-  std::string playerLineExit = "РІС‹С…РѕРґ";
-  // Exit line - РґР°
-  std::string playerLineYes = "РґР°";
-  // Exit line - РЅРµС‚
-  std::string playerLineNo = "РЅРµС‚";
-   // Exit line - РЅ
-  std::string playerLineN = "РЅ";
-   // Exit line - Рґ
-  std::string playerLineY = "Рґ";  
+  // Exit line - выход
+  std::string playerLineExit = "выход";
+  // Exit line - да
+  std::string playerLineYes = "да";
+  // Exit line - нет
+  std::string playerLineNo = "нет";
+   // Exit line - н
+  std::string playerLineN = "н";
+   // Exit line - д
+  std::string playerLineY = "д";  
 
   while (gameContinue)
     {      
-      std::system("clear");
+      std::system("CLS");
       std::cout << "---------------------------------------------------------------\n\n";
-      std::cout << "                  >>> РРіСЂР° РЈРіР°РґР°Р№-РєР°! <<<\n\n";
-      std::cout << "Р’ РїСЂРѕС†РµСЃСЃРµ РёРіСЂС‹ Сѓ РІР°СЃ Р±СѓРґРµС‚ 7 РїРѕРґСЃРєР°Р·РѕРє, СЃРµР№С‡Р°СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРѕ: " << hintCount << "\n\n";
+      std::cout << "                  >>> Игра Угадай-ка! <<<\n\n";
+      std::cout << "В процессе игры у вас будет 7 подсказок, сейчас использовано: " << hintCount << "\n\n";
       std::cout << "---------------------------------------------------------------\n\n";
 
       gameToken = ( rand() % ( num + 1 ) );
@@ -110,22 +113,22 @@ int main()
 
       int wordLength = Questions[gameToken -1].questWord.length();
 
-      nowide::cout << "\nРЎР»РѕРІРѕ в„–" << (gameToken);
-      nowide::cout << "\n\nРЈРіР°РґР°Р№С‚Рµ СЃР»РѕРІРѕ, РґР»РёРЅРЅР° СЃР»РѕРІР°: " << wordLength << "\n\n";
+      std::cout << "\nСлово №" << (gameToken);
+      std::cout << "\n\nУгадайте слово, длинна слова: " << wordLength << "\n\n";
 
       do
         {
-          nowide::cin >> playerInput;
-          if ( playerInput == ( converter.to_bytes(Questions[gameToken -1].questWord) ) )
+          std::cin >> playerInput;
+          if ( playerInput == ( Questions[gameToken -1].questWord) )
           {
-            std::cout << "РџРѕР·РґСЂР°РІР»СЏСЋ! Р’С‹ СѓРіР°РґР°Р»Рё СЃР»РѕРІРѕ " << converter.to_bytes(Questions[gameToken -1].questWord) << " РёСЃРїРѕР»СЊР·РѕРІР°РІ " 
-                      << hintCount << " РїРѕРґСЃРєР°Р·РѕРє.\n\n";
+            std::cout << "Поздравляю! Вы угадали слово " << Questions[gameToken -1].questWord << " использовав " 
+                      << hintCount << " подсказок.\n\n";
             gotWordRight = true;
           } else // end (playerInput == Questions[gameToken -1].questWord)
           {
             if (hintCount < Questions[gameToken - 1].numberOfHints)
             {
-              nowide::cout << "РќРµ РІРµСЂРЅРѕ. РџРѕРґСЃРєР°Р·РєР° в„– " << (hintCount + 1) << ": " << converter.to_bytes( Questions[gameToken -1].hintsList[hintCount] )
+              std::cout << "Не верно. Подсказка № " << (hintCount + 1) << ": " <<  Questions[gameToken -1].hintsList[hintCount] 
                         << std::endl;
               hintCount++;
             } 
@@ -135,8 +138,8 @@ int main()
               {
                 gotWordRight = true;
                 surrenderWithExit = true;
-              } // END if (playerInput == std::to_wstring("РІС‹С…РѕРґ"))
-              std::cout << "РќРµ РІРµСЂРЅРѕ. РџРѕРґСЃРєР°Р·РєРё РєРѕРЅС‡РёР»РёСЃСЊ! РќРѕ РјРѕР¶РµС‚ РІР°Рј РїРѕРІРµР·С‘С‚!\nР’РІРµРґРёС‚Рµ 'РІС‹С…РѕРґ' РµСЃР»Рё СЃРґР°С‘С‚РµСЃСЊ!\n" << std::endl;
+              } // END if (playerInput == std::to_string("выход"))
+              std::cout << "Не верно. Подсказки кончились! Но может вам повезёт!\nВведите 'выход' если сдаётесь!\n" << std::endl;
             } // END ELSE
           } // END ELSE
         } while (!gotWordRight);
@@ -145,14 +148,14 @@ int main()
 
           if (!surrenderWithExit)
           {
-            std::cout << "Р’С‹ СѓРіР°РґР°Р»Рё СЃР»РѕРІРѕ, Р±СѓРґРµС‚Рµ РїСЂРѕРґРѕР»Р¶Р°С‚СЊ? (Рґ (РґР°) / РЅ (РЅРµС‚))\n>";
+            std::cout << "Вы угадали слово, будете продолжать? (д (да) / н (нет))\n>";
           }
           else
           {
-            std::cout << "Р’ РґСЂСѓРіРѕР№ СЂР°Р· РїРѕРІРµР·С‘С‚, Р±СѓРґРµС‚Рµ РїСЂРѕРґРѕР»Р¶Р°С‚СЊ? (Рґ (РґР°) / РЅ (РЅРµС‚))\n>";
+            std::cout << "В другой раз повезёт, будете продолжать? (д (да) / н (нет))\n>";
           }
       
-          nowide::cin >> keyChar;
+          std::cin >> keyChar;
 
         } while ( keyChar.compare(playerLineY) && keyChar.compare(playerLineN) && keyChar.compare(playerLineYes) && keyChar.compare(playerLineNo) ); 
 
@@ -164,16 +167,18 @@ int main()
     } // END OF while (gameContinue)
 
  
-  // -------------------- Р—РђР’Р•Р РЁР•РќРР• Р РђР‘РћРўР« ------------------
+  // -------------------- ЗАВЕРШЕНИЕ РАБОТЫ ------------------
 
    
-    std::system("clear");
+    std::system("CLS");
     std::cout << "---------------------------------------------------------------\n\n";
-    std::cout << "                  >>> РРіСЂР° РЈРіР°РґР°Р№-РєР°! <<<\n\n";
+    std::cout << "                  >>> Игра Угадай-ка! <<<\n\n";
     std::cout << "---------------------------------------------------------------\n\n";
-    std::cout << "                        РР“Р Рђ РћРљРћРќР§Р•РќРђ" << std::endl;
+    std::cout << "                        ИГРА ОКОНЧЕНА" << std::endl;
 
     Questions.clear();
+
+    system("pause");
   
   return 0;
 } // END OF int main() 
