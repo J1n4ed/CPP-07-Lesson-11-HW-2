@@ -1,3 +1,4 @@
+#include <iostream>
 #include "hints.h"
 #include <string>
 #include <vector>
