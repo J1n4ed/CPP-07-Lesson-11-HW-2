@@ -11,7 +11,7 @@
 namespace jinx // ---------------------------------------------------------------
 {
 
-/* Функция чтения файла с вопросами и подсчёта количества вопросов в файле */
+/* Р¤СѓРЅРєС†РёСЏ С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р° СЃ РІРѕРїСЂРѕСЃР°РјРё Рё РїРѕРґСЃС‡С‘С‚Р° РєРѕР»РёС‡РµСЃС‚РІР° РІРѕРїСЂРѕСЃРѕРІ РІ С„Р°Р№Р»Рµ */
 int get_quests_amount(std::string fileName)
 {
   
@@ -42,7 +42,7 @@ int get_quests_amount(std::string fileName)
   } // END OF if (file.is_open())
   else
   {
-    std::cerr << "ОШИБКА ЧТЕНИЯ ФАЙЛА!" << std::endl;
+    std::cerr << "РћРЁРР‘РљРђ Р§РўР•РќРРЇ Р¤РђР™Р›Рђ!" << std::endl;
     throw std::string("ERROR READING FILE");
   }
   file.clear();
@@ -51,7 +51,7 @@ int get_quests_amount(std::string fileName)
   
 } /* END OF get_quests_amount() ----------------------------------------------*/
 
-/* Выгружает из файла слово для угадывания */
+/* Р’С‹РіСЂСѓР¶Р°РµС‚ РёР· С„Р°Р№Р»Р° СЃР»РѕРІРѕ РґР»СЏ СѓРіР°РґС‹РІР°РЅРёСЏ */
 std::string read_word(std::string fileName, int num)
 {
 
@@ -91,7 +91,7 @@ std::string read_word(std::string fileName, int num)
   } /* END if (file.is_open() */
   else
   {
-      std::cerr << "ОШИБКА ЧТЕНИЯ ФАЙЛА!" << std::endl;
+      std::cerr << "РћРЁРР‘РљРђ Р§РўР•РќРРЇ Р¤РђР™Р›Рђ!" << std::endl;
       throw std::string("ERROR READING FILE");
     
   } /* END else */
@@ -100,7 +100,7 @@ std::string read_word(std::string fileName, int num)
   
 } /* END OF read_word() --------------------------------------------------------*/
 
-/* Выгружает из файла подсказки для угадывания */
+/* Р’С‹РіСЂСѓР¶Р°РµС‚ РёР· С„Р°Р№Р»Р° РїРѕРґСЃРєР°Р·РєРё РґР»СЏ СѓРіР°РґС‹РІР°РЅРёСЏ */
 std::vector<std::string> read_hints(std::string fileName, int num)
 {
   
@@ -147,7 +147,7 @@ std::vector<std::string> read_hints(std::string fileName, int num)
   } /* END if (file.is_open() */
   else
   {
-      std::cerr << "ОШИБКА ЧТЕНИЯ ФАЙЛА!" << std::endl;
+      std::cerr << "РћРЁРР‘РљРђ Р§РўР•РќРРЇ Р¤РђР™Р›Рђ!" << std::endl;
       throw std::string("ERROR READING FILE");
     
   } /* END else */
@@ -157,13 +157,13 @@ std::vector<std::string> read_hints(std::string fileName, int num)
   
 } /* END OF readHints() */
 
-/* Выгружает из файла слово для угадывания */
-// ВЕРСИЯ ВНЕ КЛАССА
+/* Р’С‹РіСЂСѓР¶Р°РµС‚ РёР· С„Р°Р№Р»Р° СЃР»РѕРІРѕ РґР»СЏ СѓРіР°РґС‹РІР°РЅРёСЏ */
+// Р’Р•Р РЎРРЇ Р’РќР• РљР›РђРЎРЎРђ
 std::string read_word_outside(std::string fileName, int num)
 {
-  /* пример строки со словом 
+  /* РїСЂРёРјРµСЂ СЃС‚СЂРѕРєРё СЃРѕ СЃР»РѕРІРѕРј 
 
-  <questWord 1>брусника</questWord>
+  <questWord 1>Р±СЂСѓСЃРЅРёРєР°</questWord>
 
   */
   
@@ -206,7 +206,7 @@ std::string read_word_outside(std::string fileName, int num)
   } /* END if (file.is_open() */
   else
   {
-      std::cerr << "ОШИБКА ЧТЕНИЯ ФАЙЛА!" << std::endl;
+      std::cerr << "РћРЁРР‘РљРђ Р§РўР•РќРРЇ Р¤РђР™Р›Рђ!" << std::endl;
       throw std::string("ERROR READING FILE");
     
   } /* END else */
@@ -216,8 +216,8 @@ std::string read_word_outside(std::string fileName, int num)
   
 } /* END OF read_word_outside() ---------------------------------------------*/
 
-/* Выгружает из файла подсказки для угадывания */
-// ВЕРСИЯ ВНЕ КЛАССА
+/* Р’С‹РіСЂСѓР¶Р°РµС‚ РёР· С„Р°Р№Р»Р° РїРѕРґСЃРєР°Р·РєРё РґР»СЏ СѓРіР°РґС‹РІР°РЅРёСЏ */
+// Р’Р•Р РЎРРЇ Р’РќР• РљР›РђРЎРЎРђ
 std::vector<std::string> read_hints_outside(std::string fileName, int num)
 {  
   std::ifstream file;
@@ -264,7 +264,7 @@ std::vector<std::string> read_hints_outside(std::string fileName, int num)
   } /* END if (file.is_open() */
   else
   {
-      std::cerr << "ОШИБКА ЧТЕНИЯ ФАЙЛА!" << std::endl;
+      std::cerr << "РћРЁРР‘РљРђ Р§РўР•РќРРЇ Р¤РђР™Р›Рђ!" << std::endl;
       throw std::string("ERROR READING FILE");
     
   } /* END else */
@@ -273,12 +273,12 @@ std::vector<std::string> read_hints_outside(std::string fileName, int num)
   
 } /* END OF read_hints_outside() -------------------------------------------------*/
 
-/* Получить количество подсказок для текущего слова,
- Аттрибуты функции:
-    1. Наименование файла для чтения записей
-    2. Порядковый номер вопроса в файле
+/* РџРѕР»СѓС‡РёС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕРґСЃРєР°Р·РѕРє РґР»СЏ С‚РµРєСѓС‰РµРіРѕ СЃР»РѕРІР°,
+ РђС‚С‚СЂРёР±СѓС‚С‹ С„СѓРЅРєС†РёРё:
+    1. РќР°РёРјРµРЅРѕРІР°РЅРёРµ С„Р°Р№Р»Р° РґР»СЏ С‡С‚РµРЅРёСЏ Р·Р°РїРёСЃРµР№
+    2. РџРѕСЂСЏРґРєРѕРІС‹Р№ РЅРѕРјРµСЂ РІРѕРїСЂРѕСЃР° РІ С„Р°Р№Р»Рµ
 
-  ВЕРСИЯ В КЛАССE
+  Р’Р•Р РЎРРЇ Р’ РљР›РђРЎРЎE
   */
 int get_number_of_hints(std::string fileName, int num)
 {
@@ -312,7 +312,7 @@ int get_number_of_hints(std::string fileName, int num)
   } /* END if (file.is_open() */
   else
   {
-    std::cerr << "ОШИБКА ЧТЕНИЯ ФАЙЛА!" << std::endl;
+    std::cerr << "РћРЁРР‘РљРђ Р§РўР•РќРРЇ Р¤РђР™Р›Рђ!" << std::endl;
     throw std::string("ERROR READING FILE");
     
   } /* END else */
@@ -320,12 +320,12 @@ int get_number_of_hints(std::string fileName, int num)
   file.close();
 } // END OF int get_number_of_hints(std::string, int) -----------------------------
 
-/* Получить количество подсказок для текущего слова,
- Аттрибуты функции:
-    1. Наименование файла для чтения записей
-    2. Порядковый номер вопроса в файле
+/* РџРѕР»СѓС‡РёС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕРґСЃРєР°Р·РѕРє РґР»СЏ С‚РµРєСѓС‰РµРіРѕ СЃР»РѕРІР°,
+ РђС‚С‚СЂРёР±СѓС‚С‹ С„СѓРЅРєС†РёРё:
+    1. РќР°РёРјРµРЅРѕРІР°РЅРёРµ С„Р°Р№Р»Р° РґР»СЏ С‡С‚РµРЅРёСЏ Р·Р°РїРёСЃРµР№
+    2. РџРѕСЂСЏРґРєРѕРІС‹Р№ РЅРѕРјРµСЂ РІРѕРїСЂРѕСЃР° РІ С„Р°Р№Р»Рµ
 
-  ВЕРСИЯ ВНЕ КЛАССА
+  Р’Р•Р РЎРРЇ Р’РќР• РљР›РђРЎРЎРђ
   */
   int get_number_of_hints_outside(std::string fileName, int num)
 {
@@ -359,7 +359,7 @@ int get_number_of_hints(std::string fileName, int num)
   } /* END if (file.is_open() */
   else
   {
-    std::cerr << "ОШИБКА ЧТЕНИЯ ФАЙЛА!" << std::endl;
+    std::cerr << "РћРЁРР‘РљРђ Р§РўР•РќРРЇ Р¤РђР™Р›Рђ!" << std::endl;
     throw std::string("ERROR READING FILE");
     
   } /* END else */
@@ -367,7 +367,7 @@ int get_number_of_hints(std::string fileName, int num)
   file.close();
 } // END OF int get_number_of_hints_outside(std::string, int) ----------------------
 
-  /* Генерация класса для угадывания слова */
+  /* Р“РµРЅРµСЂР°С†РёСЏ РєР»Р°СЃСЃР° РґР»СЏ СѓРіР°РґС‹РІР°РЅРёСЏ СЃР»РѕРІР° */
 jinx::WordQuest make_quest(std::string fileName, int num)
 {
   jinx::WordQuest newQuest;
