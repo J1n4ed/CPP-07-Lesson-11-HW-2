@@ -1,2 +1,8 @@
 .vscode/
+.vs/
+x64
 *.exe
+*.sln
+*.vcxproj
+*.filters
+*.user
