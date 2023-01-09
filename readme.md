@@ -1,14 +1,11 @@
 # GUESS THE WORD test game
 
-- Netology 28.12.2022
-- CPP-07
-
-Test file
+Simplified version for VS CODE
+All code is in main.cpp
 
 # Описание
 
 Программа про угадывание слов, с подсказками.
-Оптимизировано под Win x64, но вероятно и в Nix стартанёт *проверить*
 
 # Известные косяки
 
